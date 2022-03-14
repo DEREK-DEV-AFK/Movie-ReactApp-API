@@ -10,9 +10,10 @@ body {
 
 header {
     background-color: #373b69;
-    padding: 1rem;
+    padding: 0.8rem;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 /* header > form {

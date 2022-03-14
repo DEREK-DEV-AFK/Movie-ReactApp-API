@@ -9,7 +9,9 @@
   }
   
 .movie img {
-    max-width: 100%;
+    height: 450px;
+    width: 100%;
+    object-fit: cover;
   }
 
 .movie-info {
@@ -42,4 +44,44 @@
 
 .movie:hover .movie-overview {
     transform: translateY(0%);
+}
+
+.tag {
+    background-color: #22254b;
+    border-radius: 5px;
+    padding: 0.5rem;
+    font-weight: bold;
+}
+
+.tag.green { color: green; }
+.tag.orange { color: orange; }
+.tag.red { color: red; }
+
+.wrapper-main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.wrapper-submain {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.wrapper-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.wrapper-img {
+    display: flex;
+    align-content: space-around;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }

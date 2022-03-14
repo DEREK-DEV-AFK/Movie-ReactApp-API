@@ -49,7 +49,7 @@ For more info, check out here
 */
 
 const PopularMovie_API = "https://movie-task.vercel.app/api/popular?page=1";
-const Movie_details = "https://movie-task.vercel.app/api/movie?movieId=";
+
 const Movie_search = "https://movie-task.vercel.app/api/search?page=1&query=";
   
 
@@ -57,6 +57,7 @@ function App() {
 
   const [ movies,  setMovies ] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [filterValue, setfilterValue] = useState('');
 
   useEffect(() => {
       getMovies(PopularMovie_API);    
@@ -79,25 +80,43 @@ function App() {
 
       setSearchTerm("");
     }
+    setfilterValue('');
   }
-
   
   const handleOnChange = (e) => {
     setSearchTerm(e.target.value);
+  }
+
+  const handleFilterValue = (e) => {
+    console.log(e.target.value);
+    setfilterValue(e.target.value);
   }
 
   return (
     <div className="App">
       <header>
          <form onSubmit={handleOnSubmit}>
-            <input type="number" min='1000' max='2022' className='filter-year'  onChange={handleOnChange}/>
+            <input type="number" min='1000' max='2022' className='filter-year' value={filterValue} onChange={handleFilterValue}/>
          </form>
          <form onSubmit={handleOnSubmit}>
             <input type="search" placeholder='Search....' className='search-bar' value={searchTerm} onChange={handleOnChange} />
          </form>
       </header>
       <div className='movie-container'>
-      {movies.length > 0 && movies.map((movie) => 
+      {movies.length > 0 && movies.filter((value) => {
+        if(filterValue === ''){
+          console.log("empty");
+          return value;
+        }
+        else if(value.release_date.includes(filterValue)){
+          console.log("movie found !!!");
+          return value;
+        }
+        // else{
+        //   console.log("no such movie filter aloowedd !!");
+        //   return value;
+        // }
+      }).map((movie) => 
         <Movie key={movie.id} {...movie} />
       )}
       </div>
